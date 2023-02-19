@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "noImplicitAny": true,
+    "sourceMap": true,
+    "module": "es6",
+    "target": "es5",
+    "jsx": "react",
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    //позволяет работать с пакетами которые используют common.js (require) с помощью привычного синтаксиса import 
+    "esModuleInterop": true,
+  },
+  "ts-node": {
+    "compilerOptions": {
+        "module": "CommonJS"
+    }
+}
+}

@@ -1,0 +1,17 @@
+
+
+.Card{
+    padding-top: 10%;
+    display: flex;
+    justify-content: center;
+
+
+    &Content{
+        padding: 30px;
+        background-color: black;
+        border-radius: 40px;
+        background-color: var(--main-bc-alternate-color);
+    }
+
+    
+}
