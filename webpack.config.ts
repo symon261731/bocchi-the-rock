@@ -1,18 +1,13 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-
+import { buildDevServer } from './types/build/buildDevServer';
+import { buildLoaders } from './types/build/buildLoader';
 
 module.exports = {
   mode: 'development',
   entry: './src/index.tsx',
   module: {
-    rules: [
-      {
-        test: /\.(ts|tsx)$/, 
-        use: 'ts-loader',
-        exclude: /node_modules/,
-      },
-    ],
+    rules: buildLoaders()
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
@@ -25,10 +20,7 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
   },
   devtool: 'inline-source-map',
-  devServer:  {
-    port: 3000,
-    open: true,
-    historyApiFallback: true,
-    hot: true,
-  }
+  devServer:  buildDevServer(),
+  
+  
 };
