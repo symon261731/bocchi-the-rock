@@ -2,13 +2,15 @@ import React, { useState } from 'react';
 import useSound from '../../../../node_modules/use-sound/dist/index';
 import { classNames } from '../../../shared/lib/helpers/classNames/classNames';
 import './Card.scss';
+import image from '../../../shared/assets/cover.jpg';
 
 interface CardProps {
-    classNameValue?: string
+    classNameValue?: string,
+    currentName: string,
 }
 
 
-export const Card : React.FC = ({classNameValue}: CardProps) => {
+export const Card : React.FC<CardProps> = ({classNameValue, currentName}) => {
 
     
 
@@ -28,9 +30,9 @@ export const Card : React.FC = ({classNameValue}: CardProps) => {
         <div className={classNames('Card', {}, [classNameValue])}>
             <div className="CardContent">
                 <div className="CardPicture"> 
-                <img src="#" alt="logo" className="CardImage" />
+                <img src={image} alt="logo" className="CardImage" />
                 </div>
-                <p className="CardSongName">bocchi the rock</p>
+                <p className="CardSongName">{currentName}</p>
                 <button onClick={playHandler}>play</button>
             </div>
         </div>

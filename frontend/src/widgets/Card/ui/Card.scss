@@ -1,9 +1,7 @@
 
 
 .Card{
-    padding-top: 10%;
-    display: flex;
-    justify-content: center;
+   
 
 
     &Content{
@@ -13,5 +11,22 @@
         background-color: var(--main-bc-alternate-color);
     }
 
-    
+    &Picture{
+        width: 400px;
+        height: 400px;
+        object-fit: contain;
+        margin-bottom: 20px;
+    }
+    &Image{
+       width: 100%;
+       height: 100%;
+       border-radius: 40px;
+    }
+
+    &SongName{
+        text-align: center;
+        font-size: 1.5em;
+        margin-bottom: 10px;
+    }
+
 }

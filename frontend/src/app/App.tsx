@@ -1,23 +1,18 @@
 import React, { useState } from 'react';
+import { MainPage } from '../pages/MainPage/ui/MainPage';
 import { classNames } from '../shared/lib/helpers/classNames/classNames';
-import { Card } from '../widgets/Card/ui/Card';
+import { useTheme } from '../shared/Theme/hooks/useTheme';
+import { ThemeSwitcher } from '../widgets/ThemeSwitcher/ui/ThemeSwitcher';
 import './styles/index.scss';
 
-enum Theme  {
-    LIGHT = 'light',
-    DARK = 'dark',
-}
 
 
 const App = () => {
-    const [theme, setTheme] = useState(Theme.LIGHT);
-    const changeTheme = () => {
-        setTheme((prev)=> prev === Theme.LIGHT ? Theme.DARK : Theme.LIGHT)
-    }
+    const {theme} = useTheme()
     return (
     <div className={classNames('app', {}, [theme])} >
-        <button onClick={changeTheme} type='button'>change theme</button>
-        <Card></Card>
+        <ThemeSwitcher/>
+        <MainPage/>
     </div>)
 }
 export default App;
