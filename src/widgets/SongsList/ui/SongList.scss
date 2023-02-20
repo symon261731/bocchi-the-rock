@@ -1,0 +1,27 @@
+
+.songs{
+    background-color: var(--main-bc-alternate-color);
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.one-song{
+    text-decoration: none;
+    list-style: none;
+    font-weight: 700;
+    padding: 5px 7px;
+    background-color: var(--main-bc-alternate-color);
+    cursor: pointer;
+    &:hover{
+        opacity: 0.8;
+    }
+}
+
+.flex{
+    flex: 1 1 auto;
+}
+
+
+.chosen{
+    color: rgb(183, 183, 183);
+}
