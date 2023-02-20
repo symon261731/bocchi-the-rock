@@ -16,7 +16,7 @@ export const SongsList: FC<SongsListProps> = (
      setCurrentMp}) => {
     
     const [songs,setSongs] = useState([]);
-
+    const [error,setError] = useState('');
     const chooseSong =  (el:string) => {
         setCurrentName(el);
     }
@@ -27,14 +27,19 @@ export const SongsList: FC<SongsListProps> = (
     }
 
     useEffect(()=> {
-     
     deezerApi.getAlbum().then(form => {
         console.log(form)
-        setSongs((prev)=> [prev, ...form.tracks.data])} )
+        if(form.error){ 
+            setError(form.error.message)
+        } else{
+            setSongs((prev)=> [prev, ...form.tracks.data])}
+        })
     },[])
 
     return (
     <div className={classNames('',{},[classNameValue])}>
+        {error ?
+        <p>{error}</p>  : 
         <ul className='songs'>
             {songs?.map((el)=> 
             <li 
@@ -48,6 +53,7 @@ export const SongsList: FC<SongsListProps> = (
             </li>
             )}
         </ul>
+     }
     </div>
     )
 }
