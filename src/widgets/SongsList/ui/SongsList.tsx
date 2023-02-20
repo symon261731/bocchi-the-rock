@@ -1,22 +1,24 @@
 import React, { FC, useEffect, useState } from 'react';
 import './SongList.scss';
-import axios from 'axios';
 import { classNames } from '../../../shared/lib/helpers/classNames/classNames';
-
+import { deezerApi } from '../../../api/deezer';
 interface SongsListProps {
     classNameValue?: string;
-    setCurrentName: React.Dispatch<React.SetStateAction<string>>;
-    currentSong: String;
+    setCurrentName?: React.Dispatch<React.SetStateAction<string>>;
+    setCurrentMp?: React.Dispatch<React.SetStateAction<string>>; 
+    currentSong?: String;
 }
 
-export const SongsList: FC<SongsListProps> = ({currentSong, setCurrentName, classNameValue}) => {
+export const SongsList: FC<SongsListProps> = (
+    {currentSong,
+     setCurrentName,
+     classNameValue,
+     setCurrentMp}) => {
     
     const [songs,setSongs] = useState([]);
 
     const chooseSong =  (el:string) => {
         setCurrentName(el);
-        const responce =  axios.post('http://localhost:3005/getSong',{el})
-        responce.then(res=> console.log(res));
     }
 
     const isChosenSong = (element: string) => {
@@ -24,18 +26,25 @@ export const SongsList: FC<SongsListProps> = ({currentSong, setCurrentName, clas
         return false;
     }
 
-    useEffect(()=>{
-        fetch('http://localhost:3005/').then(res=> res.json()).then(data=>setSongs(data));
+    useEffect(()=> {
+     
+    deezerApi.getAlbum().then(form => {
+        console.log(form)
+        setSongs((prev)=> [prev, ...form.tracks.data])} )
     },[])
+
     return (
     <div className={classNames('',{},[classNameValue])}>
         <ul className='songs'>
             {songs?.map((el)=> 
             <li 
-            onClick={()=> {chooseSong(el)}}
-            key={el} 
+            onClick={()=> {
+                chooseSong(el.title)
+                setCurrentMp(el.preview)
+            }}
+            key={el.title} 
             className={classNames('one-song',{chosen : isChosenSong(el)},[])}>
-                {el}
+                {el.title}
             </li>
             )}
         </ul>
