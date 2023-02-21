@@ -9,17 +9,16 @@ interface SongsListProps {
     currentSong?: String;
 }
 
-export const SongsList: FC<SongsListProps> = (
-    {currentSong,
-     setCurrentName,
-     classNameValue,
-     setCurrentMp}) => {
-    
+export const SongsList: FC<SongsListProps> = (props) => {
+
+    const {currentSong,setCurrentName,classNameValue,setCurrentMp} = props;    
     const [songs,setSongs] = useState([]);
     const [error,setError] = useState('');
     const chooseSong =  (el:string) => {
         setCurrentName(el);
     }
+
+    const [audios, setAudio] = useState('https://cdns-preview-c.dzcdn.net/stream/c-c59dbde437ad17cd27a647460510740f-2.mp3')
 
     const isChosenSong = (element: string) => {
         if (element === currentSong) return true;
@@ -28,7 +27,7 @@ export const SongsList: FC<SongsListProps> = (
 
     useEffect(()=> {
     deezerApi.getAlbum().then(form => {
-        console.log(form)
+        
         if(form.error){ 
             setError(form.error.message)
         } else{
@@ -41,13 +40,13 @@ export const SongsList: FC<SongsListProps> = (
         {error ?
         <p>{error}</p>  : 
         <ul className='songs'>
-            {songs?.map((el)=> 
+            {songs?.map((el, index)=> 
             <li 
+            key={index} 
             onClick={()=> {
                 chooseSong(el.title)
                 setCurrentMp(el.preview)
             }}
-            key={el.title} 
             className={classNames('one-song',{chosen : isChosenSong(el)},[])}>
                 {el.title}
             </li>
