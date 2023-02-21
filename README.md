@@ -2,7 +2,5 @@
 
 Приложение mp3 плеера.
 
-
-
-Стек: 
+Стек:
 Typescript, React, webpack, deezerAPI, SCSS, use-sound.

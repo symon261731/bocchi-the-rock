@@ -18,8 +18,6 @@ export const SongsList: FC<SongsListProps> = (props) => {
         setCurrentName(el);
     }
 
-    const [audios, setAudio] = useState('https://cdns-preview-c.dzcdn.net/stream/c-c59dbde437ad17cd27a647460510740f-2.mp3')
-
     const isChosenSong = (element: string) => {
         if (element === currentSong) return true;
         return false;
@@ -47,7 +45,7 @@ export const SongsList: FC<SongsListProps> = (props) => {
                 chooseSong(el.title)
                 setCurrentMp(el.preview)
             }}
-            className={classNames('one-song',{chosen : isChosenSong(el)},[])}>
+            className={classNames('one-song', {chosen : isChosenSong(el.title)},[])}>
                 {el.title}
             </li>
             )}
