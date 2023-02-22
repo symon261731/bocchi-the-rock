@@ -5,12 +5,10 @@ import { Player } from '../../Player/ui/Player';
 import './Card.scss';
 interface CardProps {
     classNameValue?: string,
-    currentName: string,
-    currentMp: string,
 }
 
 
-export const Card : React.FC<CardProps> = ({classNameValue, currentName, currentMp}) => {
+export const Card : React.FC<CardProps> = ({classNameValue}) => {
     
     const[ playing, setPlaying ] = useState(false);
 
@@ -20,8 +18,8 @@ export const Card : React.FC<CardProps> = ({classNameValue, currentName, current
                 <div className="CardPicture"> 
                     <img src={coverImage} alt="logo" className="CardImage" />
                 </div>
-                <p className="CardSongName">{currentName}</p>
-                <Player currentMp={currentMp} setPlaying={setPlaying} playing={playing}/>
+                <p className="CardSongName">123</p>
+                <Player />
             </div>
         </div>
     )

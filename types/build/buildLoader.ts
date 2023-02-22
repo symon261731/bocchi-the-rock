@@ -1,3 +1,4 @@
+import { RuleSetRule } from "webpack";
 
 
 interface loader {
@@ -6,7 +7,7 @@ interface loader {
     exclude? :RegExp;
 }
 
-export const buildLoaders: any = () => {
+export function buildLoaders() : RuleSetRule[] {
 
     const tsLoader: loader = {
             test: /\.(ts|tsx)$/, 

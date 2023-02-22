@@ -9,26 +9,14 @@ import useSound from 'use-sound';
 
 interface PlayerProps {
     classnameValues?: string,
-    playing: boolean,
-    setPlaying: React.Dispatch<React.SetStateAction<boolean>>,
-    currentMp: string,
+
 }
 
 export const Player: FC<PlayerProps> = (props) => {
-    const {playing, setPlaying, currentMp} = props;
+    const {classnameValues} = props;
 
-    const [play, {stop} ] = useSound(currentMp)
 
-    const runMusic = () => {
-        if( playing === true){
-            stop();
-            setPlaying(prev => !!prev ? false : true)
-        } else{
-            play();
-            setPlaying(prev => !!prev ? false : true)
-        }
-        
-    }
+   
     
     return (
         <div className={classNames('player', {}, [])}>
@@ -36,9 +24,8 @@ export const Player: FC<PlayerProps> = (props) => {
                 <Previous/>
             </button>
             <button
-             onClick={()=> runMusic() }
              className='clear'>
-                {playing ? <Pause/> : <Play/>} 
+                {<Pause/> || <Play/>} 
             </button>
             <button className='clear'>
                 <Next/>

@@ -1,12 +1,10 @@
+import type { Configuration as DevServerConfiguration } from "webpack-dev-server";
 
-
-
-
-export const buildDevServer = () => {
+export default function buildDevServer (port: number) : DevServerConfiguration {
     return {
-        port: 3000,
+        port,
         open: true,
         historyApiFallback: true,
         hot: true,
-    }
+    };
 }
