@@ -7,11 +7,14 @@ interface PlayerProviderProps {
 
 export const PlayerProvider: FC<PlayerProviderProps> = ({children}) => {
     const [currentSong, setCurrentSong]= useState({});
+    const [isPlaying, setIsPlaying] = useState(false);
     const defaultValue = useMemo(()=>({
         currentSong,
         setCurrentSong,
+        isPlaying,
+        setIsPlaying,
         
-    }),[currentSong])
+    }),[currentSong, isPlaying])
     return (
         <PlayerContext.Provider value={defaultValue}>
             {children}

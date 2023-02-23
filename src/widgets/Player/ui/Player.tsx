@@ -1,4 +1,4 @@
-import React, { FC, useContext, useRef, useState } from 'react';
+import React, { FC, useContext, useEffect, useRef, useState } from 'react';
 import Play from '../../../shared/assets/svg/play.svg';
 import Pause from '../../../shared/assets/svg/pause.svg';
 import Next from '../../../shared/assets/svg/next.svg';
@@ -15,10 +15,15 @@ interface PlayerProps {
 
 export const Player: FC<PlayerProps> = (props) => {
     const {classnameValues} = props;
-    const {currentSong} = useContext(PlayerContext);
-    const [isPlaying, setIsPlaying] = useState(false);
-    const audioPlayer = useRef<HTMLAudioElement>()
-    
+
+    // const {currentSong, isPlaying, setIsPlaying} = useContext(PlayerContext);
+    const {currentSong, isPlaying, setIsPlaying} =usePlayer();
+
+    // const [duration, setDuration] = useState(0);
+
+    const audioPlayer = useRef<HTMLAudioElement>();
+
+
     const togglePlayPause = () => {
         if(!isPlaying){
             audioPlayer.current.play();
@@ -29,6 +34,7 @@ export const Player: FC<PlayerProps> = (props) => {
 
         }
     }
+
     return (
         <div className={classNames('player', {}, [])}>
             <audio ref={audioPlayer} src={currentSong.preview}/>

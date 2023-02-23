@@ -23,7 +23,6 @@ export const SongsList: FC<SongsListProps> = (props) => {
             setError(form.error.message)
         } else{
             setSongs(form.tracks.data)}
-            // changeTrack(songs[0]);
         })
     },[])
 
