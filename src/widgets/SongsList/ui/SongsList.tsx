@@ -1,37 +1,40 @@
-import React, { FC, useEffect, useState } from 'react';
-import './SongList.scss';
+import React, { Dispatch, FC, useEffect, useState } from 'react';
 import { classNames } from '../../../shared/lib/helpers/classNames/classNames';
 import { deezerApi } from '../../../api/deezer';
-import { PlayerContext } from '../../../shared/Player/PlayerContext';
 import { usePlayer } from '../../../shared/Player/hooks/usePlayer';
+import './SongList.scss';
 interface SongsListProps {
     classNameValue?: string;
-    togglePlayPauser?: ()=> void;
+    songs?: Array<any>;
+    setSongs?: Dispatch<React.SetStateAction<any[]>>;
 }
 
-
+export interface DataValue {
+    duration: number;
+    id: number;
+    preview: string;
+    title: string;
+}
 
 export const SongsList: FC<SongsListProps>  = (props) => {
-    const {classNameValue } = props;
-    const [songs,setSongs] = useState([]);
+    const {classNameValue, setSongs, songs } = props;
+    
     const [error,setError] = useState('');
-
-
     const {currentSong, changeTrack} = usePlayer();
 
     useEffect(()=> {
-    deezerApi.getAlbum().then(form => {
-        if(form.error){ 
-            setError(form.error.message)
+    deezerApi.getAlbum().then(songsList => {
+        if(songsList.error){ 
+            setError(songsList.error.message)
         } else{
-            setSongs(form.tracks.data)}
+            setSongs(songsList.tracks.data)}
         })
     },[])
 
     return (
     <div className={classNames('', {}, [classNameValue])}>
-        {error ? <p>{error}</p>  : <ul className='songs'>
-            {songs?.map((oneSong, index)=> 
+        {error ? <p> {error} </p>  : <ul className='songs'>
+            {songs?.map((oneSong : DataValue, index)=> 
             <li 
             key={index} 
             onClick={()=> {

@@ -4,12 +4,14 @@ import coverImage from '../../../shared/assets/cover.jpg';
 import { Player } from '../../Player/ui/Player';
 import './Card.scss';
 import { usePlayer } from '../../../shared/Player/hooks/usePlayer';
+
 interface CardProps {
     classNameValue?: string,
+    songs?: Array<any>
 }
 
-
-export const Card : React.FC<CardProps> = ({classNameValue}) => {
+export const Card : React.FC<CardProps> = (props) => {
+    const {classNameValue, songs} = props;
     const {currentSong} = usePlayer();
 
     return (
@@ -18,8 +20,8 @@ export const Card : React.FC<CardProps> = ({classNameValue}) => {
                 <div className="CardPicture"> 
                     <img src={coverImage} alt="logo" className="CardImage" />
                 </div>
-                <p className="CardSongName">{ currentSong.title || '-'  }</p>
-                <Player />
+                <p className="CardSongName">{ currentSong.title }</p>
+                <Player songs={songs} />
             </div>
         </div>
     )

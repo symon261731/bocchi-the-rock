@@ -8,11 +8,12 @@ import './MainPage.scss';
 
 
 export const MainPage = () => {
+    const [songs,setSongs] = useState([]);
 
     return(
         <div className={classNames('mainPage',{},[])}>
-            <Card />
-            <SongsList classNameValue={'flex'}/>
+            <Card songs={songs} />
+            <SongsList songs={songs} setSongs={setSongs} classNameValue={'flex'}/>
         </div>
     )
 }
