@@ -1,11 +1,10 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 import Play from '../../../shared/assets/svg/play.svg';
 import Pause from '../../../shared/assets/svg/pause.svg';
 import Next from '../../../shared/assets/svg/next.svg';
 import Previous from '../../../shared/assets/svg/back.svg';
 import './Player.scss'
 import { classNames } from '../../../shared/lib/helpers/classNames/classNames';
-import useSound from 'use-sound';
 
 interface PlayerProps {
     classnameValues?: string,
@@ -14,9 +13,6 @@ interface PlayerProps {
 
 export const Player: FC<PlayerProps> = (props) => {
     const {classnameValues} = props;
-
-
-   
     
     return (
         <div className={classNames('player', {}, [])}>

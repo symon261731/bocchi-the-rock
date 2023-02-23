@@ -2,8 +2,8 @@ import { createContext } from "react";
 
 export interface PlayerContextProps {
     currentSong?: string;
-    setSong?: ()=> void;
+    changeSong?: (el:any)=> void;
 }
 
 
-export const PlayerContext = createContext<>({});
+export const PlayerContext = createContext<PlayerContextProps>({});

@@ -1,16 +1,21 @@
 import React, {FC, ReactNode, useState} from 'react';
-
-interface PlayerProps {
+import { PlayerContext } from '../PlayerContext';
+interface PlayerProviderProps {
     children: ReactNode;
 
 }
 
-export const PlayerProvider: FC<PlayerProps> = ({children}) => {
+export const PlayerProvider: FC<PlayerProviderProps> = ({children}) => {
+    const [currentSong, setCurrentSong]= useState('-');
+
+    const changeSong = (el: any) => {
+        setCurrentSong(el.title);
+    }
 
     return (
-        <PlayerContext.Provider value={}>
+        <PlayerContext.Provider value={{currentSong, changeSong}}>
             {children}
-        <PlayerProvider.Provider/>
+        </PlayerContext.Provider>
 
     )
 }

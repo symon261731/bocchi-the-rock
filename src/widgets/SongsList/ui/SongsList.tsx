@@ -1,7 +1,8 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useContext, useEffect, useState } from 'react';
 import './SongList.scss';
 import { classNames } from '../../../shared/lib/helpers/classNames/classNames';
 import { deezerApi } from '../../../api/deezer';
+import { PlayerContext } from '../../../shared/Player/PlayerContext';
 interface SongsListProps {
     classNameValue?: string;
 }
@@ -9,6 +10,7 @@ interface SongsListProps {
 export const SongsList: FC<SongsListProps> = (props) => {
     const {classNameValue} = props;
     
+    const {changeSong} = useContext(PlayerContext);
     const [songs,setSongs] = useState([]);
     const [error,setError] = useState('');
 
@@ -27,7 +29,7 @@ export const SongsList: FC<SongsListProps> = (props) => {
             {songs?.map((oneSong, index)=> 
             <li 
             key={index} 
-            
+            onClick={()=> changeSong(oneSong)}
             className={classNames('one-song', {chosen : false},[])}>
                 {oneSong.title}
             </li>
