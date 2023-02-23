@@ -1,4 +1,4 @@
-import React, { FC, useContext, useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import './SongList.scss';
 import { classNames } from '../../../shared/lib/helpers/classNames/classNames';
 import { deezerApi } from '../../../api/deezer';
@@ -6,11 +6,13 @@ import { PlayerContext } from '../../../shared/Player/PlayerContext';
 import { usePlayer } from '../../../shared/Player/hooks/usePlayer';
 interface SongsListProps {
     classNameValue?: string;
+    togglePlayPauser?: ()=> void;
 }
 
-export const SongsList: FC<SongsListProps> = (props) => {
-    const {classNameValue} = props;
 
+
+export const SongsList: FC<SongsListProps>  = (props) => {
+    const {classNameValue } = props;
     const [songs,setSongs] = useState([]);
     const [error,setError] = useState('');
 
@@ -32,7 +34,9 @@ export const SongsList: FC<SongsListProps> = (props) => {
             {songs?.map((oneSong, index)=> 
             <li 
             key={index} 
-            onClick={()=> changeTrack(oneSong)}
+            onClick={()=> {
+                changeTrack(oneSong);
+            }}
             className={
                 classNames('one-song', {chosen: oneSong.title === currentSong.title},[])}>
                 {oneSong.title}
