@@ -10,8 +10,7 @@ interface CardProps {
 
 
 export const Card : React.FC<CardProps> = ({classNameValue}) => {
-
-    const {currentSong, isPlaying} = usePlayer();
+    const {currentSong} = usePlayer();
 
     return (
         <div className={classNames('Card', {}, [classNameValue])}>
@@ -19,7 +18,7 @@ export const Card : React.FC<CardProps> = ({classNameValue}) => {
                 <div className="CardPicture"> 
                     <img src={coverImage} alt="logo" className="CardImage" />
                 </div>
-                <p className="CardSongName">{currentSong.title || '-'}</p>
+                <p className="CardSongName">{ currentSong.title || '-'  }</p>
                 <Player />
             </div>
         </div>

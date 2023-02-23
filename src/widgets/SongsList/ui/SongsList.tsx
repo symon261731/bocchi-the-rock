@@ -14,14 +14,16 @@ export const SongsList: FC<SongsListProps> = (props) => {
     const [songs,setSongs] = useState([]);
     const [error,setError] = useState('');
 
-    const {changeTrack} = usePlayer();
-    
+
+    const {currentSong, changeTrack} = usePlayer();
+
     useEffect(()=> {
     deezerApi.getAlbum().then(form => {
         if(form.error){ 
             setError(form.error.message)
         } else{
-            setSongs((prev)=> [prev, ...form.tracks.data])}
+            setSongs(form.tracks.data)}
+            // changeTrack(songs[0]);
         })
     },[])
 
@@ -32,7 +34,8 @@ export const SongsList: FC<SongsListProps> = (props) => {
             <li 
             key={index} 
             onClick={()=> changeTrack(oneSong)}
-            className={classNames('one-song', {},[])}>
+            className={
+                classNames('one-song', {chosen: oneSong.title === currentSong.title},[])}>
                 {oneSong.title}
             </li>
             )}
