@@ -1,4 +1,4 @@
-import React, {FC, ReactNode, useState} from 'react';
+import React, {FC, ReactNode, useMemo, useState} from 'react';
 import { PlayerContext } from '../PlayerContext';
 interface PlayerProviderProps {
     children: ReactNode;
@@ -6,14 +6,13 @@ interface PlayerProviderProps {
 }
 
 export const PlayerProvider: FC<PlayerProviderProps> = ({children}) => {
-    const [currentSong, setCurrentSong]= useState('-');
-
-    const changeSong = (el: any) => {
-        setCurrentSong(el.title);
-    }
-
+    const [currentSong, setCurrentSong]= useState({});
+    const defaultValue = useMemo(()=>({
+        currentSong,
+        setCurrentSong
+    }),[currentSong])
     return (
-        <PlayerContext.Provider value={{currentSong, changeSong}}>
+        <PlayerContext.Provider value={defaultValue}>
             {children}
         </PlayerContext.Provider>
 

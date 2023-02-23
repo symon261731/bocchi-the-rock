@@ -13,7 +13,7 @@ interface PlayerProps {
 
 export const Player: FC<PlayerProps> = (props) => {
     const {classnameValues} = props;
-    
+
     return (
         <div className={classNames('player', {}, [])}>
             <button className='clear'>
@@ -21,7 +21,7 @@ export const Player: FC<PlayerProps> = (props) => {
             </button>
             <button
              className='clear'>
-                {<Pause/> || <Play/>} 
+                { <Pause/> || <Play/>} 
             </button>
             <button className='clear'>
                 <Next/>

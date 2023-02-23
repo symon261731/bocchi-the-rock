@@ -9,10 +9,10 @@ const root = createRoot(container);
 
 root.render(
     <React.StrictMode>
-        <PlayerProvider>
-            <ThemeProvider>
-                <App />
-            </ThemeProvider>
-        </PlayerProvider>
+        <ThemeProvider>
+            <PlayerProvider>
+            <App />
+            </PlayerProvider>
+        </ThemeProvider>
     </React.StrictMode>
 );
