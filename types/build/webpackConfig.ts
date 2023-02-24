@@ -17,7 +17,7 @@ export function webpackConfig (options: webpackConfigOptions) : Configuration {
     return {
         mode: mode,
 
-        entry: paths.pathToSrc,
+        entry: paths.pathToEntry,
 
         devtool: isDev ? 'inline-source-map' : undefined,
 
@@ -28,6 +28,10 @@ export function webpackConfig (options: webpackConfigOptions) : Configuration {
 
         resolve: {
                 extensions: ['.tsx', '.ts', '.js'],
+                preferAbsolute: true,
+                modules: [paths.pathToSrc, 'node_modules'],
+                
+                
         },
 
         plugins: buildPlugins(paths),
@@ -39,7 +43,7 @@ export function webpackConfig (options: webpackConfigOptions) : Configuration {
         },
 
 
-        devServer: isDev ?  buildDevServer(port): null ,
+        devServer: isDev ? buildDevServer(port) : null ,
     };
 }
 

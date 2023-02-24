@@ -11,10 +11,16 @@
     //позволяет работать с пакетами которые используют common.js (require) с помощью привычного синтаксиса import 
     "esModuleInterop": true,
     "moduleResolution": "node",
+    "baseUrl": ".",
+    "paths": {
+      "*" : ["./src/*"],
+    }
   },
   "ts-node": {
     "compilerOptions": {
         "module": "CommonJS"
-    }
-}
+    },
+  },
+  
+  
 }

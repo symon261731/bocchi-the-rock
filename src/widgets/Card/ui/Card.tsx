@@ -1,9 +1,9 @@
 import React from 'react';
-import { classNames } from '../../../shared/lib/helpers/classNames/classNames';
-import coverImage from '../../../shared/assets/cover.jpg';
-import { Player } from '../../Player/ui/Player';
+import { classNames } from 'shared/lib/helpers/classNames/classNames';
+import coverImage from 'shared/assets/cover.jpg';
+import { Player } from 'widgets/Player/ui/Player';
+import { usePlayer } from 'shared/Player/hooks/usePlayer';
 import './Card.scss';
-import { usePlayer } from '../../../shared/Player/hooks/usePlayer';
 
 interface CardProps {
     classNameValue?: string,

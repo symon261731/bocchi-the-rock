@@ -1,10 +1,10 @@
 import React, { FC, useEffect, useMemo, useRef } from 'react';
-import Play from '../../../shared/assets/svg/play.svg';
-import Pause from '../../../shared/assets/svg/pause.svg';
-import Next from '../../../shared/assets/svg/next.svg';
-import Previous from '../../../shared/assets/svg/back.svg';
-import { classNames } from '../../../shared/lib/helpers/classNames/classNames';
-import { usePlayer } from '../../../shared/Player/hooks/usePlayer';
+import Play from 'shared/assets/svg/play.svg';
+import Pause from 'shared/assets/svg/pause.svg';
+import Next from 'shared/assets/svg/next.svg';
+import Previous from 'shared/assets/svg/back.svg';
+import { classNames } from 'shared/lib/helpers/classNames/classNames';
+import { usePlayer } from 'shared/Player/hooks/usePlayer';
 import './Player.scss'
 
 interface PlayerProps {

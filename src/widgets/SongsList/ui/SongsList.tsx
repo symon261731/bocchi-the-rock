@@ -1,8 +1,9 @@
+import { deezerApi } from 'api/deezer';
 import React, { Dispatch, FC, useEffect, useState } from 'react';
-import { classNames } from '../../../shared/lib/helpers/classNames/classNames';
-import { deezerApi } from '../../../api/deezer';
-import { usePlayer } from '../../../shared/Player/hooks/usePlayer';
+import { classNames } from 'shared/lib/helpers/classNames/classNames';
+import { usePlayer } from 'shared/Player/hooks/usePlayer';
 import './SongList.scss';
+
 interface SongsListProps {
     classNameValue?: string;
     songs?: Array<any>;

@@ -1,8 +1,8 @@
 import path from 'path';
 import { Configuration } from 'webpack';
-import  buildDevServer  from './types/build/buildDevServer';
-import { buildLoaders } from './types/build/buildLoader';
-import { buildPlugins } from './types/build/buildPlugins';
+// import  buildDevServer  from './types/build/buildDevServer';
+// import { buildLoaders } from './types/build/buildLoader';
+// import { buildPlugins } from './types/build/buildPlugins';
 import { PathsProps } from './types/build/TypesWebpack/types';
 import { webpackConfig } from './types/build/webpackConfig';
 
@@ -31,8 +31,9 @@ export default () => {
 
   const paths: PathsProps = {
     pathToHtml: path.resolve(__dirname, 'public', 'index.html'),
-    pathToSrc: path.resolve(__dirname, 'src', 'index.tsx'),
-    pathOfBuild: path.resolve(__dirname, 'dist')
+    pathToEntry: path.resolve(__dirname, 'src', 'index.tsx'),
+    pathOfBuild: path.resolve(__dirname, 'dist'),
+    pathToSrc: path.resolve(__dirname, 'src'),
   }
   
   const mode = 'development';
