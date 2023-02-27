@@ -4,10 +4,11 @@ import coverImage from 'shared/assets/cover.jpg';
 import { Player } from 'widgets/Player/ui/Player';
 import { usePlayer } from 'shared/Player/hooks/usePlayer';
 import './Card.scss';
+import { DataValue } from 'widgets/SongsList/ui/SongsList';
 
 interface CardProps {
     classNameValue?: string,
-    songs?: Array<any>
+    songs?: Array<DataValue>
 }
 
 export const Card : React.FC<CardProps> = (props) => {
