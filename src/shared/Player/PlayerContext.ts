@@ -1,5 +1,5 @@
-import React, { createContext, Dispatch, SetStateAction } from "react";
-import { DataValue } from "../../widgets/SongsList/ui/SongsList";
+import React, { createContext, Dispatch, SetStateAction } from 'react';
+import { DataValue } from '../../widgets/SongsList/ui/SongsList';
 
 export interface PlayerContextProps {
     currentSong?: DataValue | {title:string, preview:string},

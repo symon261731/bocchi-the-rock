@@ -4,7 +4,7 @@ export interface PathsProps {
     pathOfBuild: string,
     pathToEntry: string,
   }
-  
+
 export interface buildPluginsProps {
     pathToHtml: string
 }

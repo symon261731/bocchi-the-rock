@@ -1,8 +1,8 @@
-import { Configuration } from "webpack";
-import { PathsProps } from "./TypesWebpack/types";
-import  buildDevServer from "./buildDevServer";
-import { buildLoaders } from "./buildLoader";
-import { buildPlugins } from "./buildPlugins";
+import { Configuration } from 'webpack';
+import { PathsProps } from './TypesWebpack/types';
+import buildDevServer from './buildDevServer';
+import { buildLoaders } from './buildLoader';
+import { buildPlugins } from './buildPlugins';
 
 interface webpackConfigOptions {
     paths: PathsProps,
@@ -11,40 +11,37 @@ interface webpackConfigOptions {
     port: number
 }
 
-export function webpackConfig (options: webpackConfigOptions) : Configuration {
-    const {paths,mode,isDev, port} = options
-    
-    return {
-        mode: mode,
+export function webpackConfig(options: webpackConfigOptions) : Configuration {
+  const {
+    paths, mode, isDev, port,
+  } = options;
 
-        entry: paths.pathToEntry,
+  return {
+    mode,
 
-        devtool: isDev ? 'inline-source-map' : undefined,
+    entry: paths.pathToEntry,
 
+    devtool: isDev ? 'inline-source-map' : undefined,
 
-        module: {
-            rules: buildLoaders(),
-        },
+    module: {
+      rules: buildLoaders(),
+    },
 
-        resolve: {
-                extensions: ['.tsx', '.ts', '.js'],
-                preferAbsolute: true,
-                modules: [paths.pathToSrc, 'node_modules'],
-                
-                
-        },
+    resolve: {
+      extensions: ['.tsx', '.ts', '.js'],
+      preferAbsolute: true,
+      modules: [paths.pathToSrc, 'node_modules'],
 
-        plugins: buildPlugins(paths),
+    },
 
-        output: {
-            filename: '[name].[contenthash].js',
-            path: paths.pathOfBuild,
-            clean: true,
-        },
+    plugins: buildPlugins(paths),
 
+    output: {
+      filename: '[name].[contenthash].js',
+      path: paths.pathOfBuild,
+      clean: true,
+    },
 
-        devServer: isDev ? buildDevServer(port) : null ,
-    };
+    devServer: isDev ? buildDevServer(port) : null,
+  };
 }
-
-

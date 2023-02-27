@@ -12,18 +12,18 @@ interface CardProps {
 }
 
 export const Card : React.FC<CardProps> = (props) => {
-    const {classNameValue, songs} = props;
-    const {currentSong} = usePlayer();
+  const { classNameValue, songs } = props;
+  const { currentSong } = usePlayer();
 
-    return (
-        <div className={classNames('Card', {}, [classNameValue])}>
-            <div className="CardContent">
-                <div className="CardPicture"> 
-                    <img src={coverImage} alt="logo" className="CardImage" />
-                </div>
-                <p className="CardSongName">{ currentSong.title }</p>
-                <Player songs={songs} />
-            </div>
+  return (
+    <div className={classNames('Card', {}, [classNameValue])}>
+      <div className="CardContent">
+        <div className="CardPicture">
+          <img src={coverImage} alt="logo" className="CardImage" />
         </div>
-    )
-}
+        <p className="CardSongName">{ currentSong.title }</p>
+        <Player songs={songs} />
+      </div>
+    </div>
+  );
+};
