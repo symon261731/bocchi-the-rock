@@ -1,12 +1,12 @@
 import { Configuration } from 'webpack';
-import { PathsProps } from './TypesWebpack/types';
+import { BuildMode, PathsProps } from './TypesWebpack/types';
 import buildDevServer from './buildDevServer';
 import { buildLoaders } from './buildLoader';
 import { buildPlugins } from './buildPlugins';
 
 interface webpackConfigOptions {
     paths: PathsProps,
-    mode: 'development' | 'production' | 'none',
+    mode: BuildMode,
     isDev: boolean,
     port: number
 }
@@ -42,6 +42,6 @@ export function webpackConfig(options: webpackConfigOptions) : Configuration {
       clean: true,
     },
 
-    devServer: isDev ? buildDevServer(port) : null,
+    devServer: isDev ? buildDevServer(port) : undefined,
   };
 }
