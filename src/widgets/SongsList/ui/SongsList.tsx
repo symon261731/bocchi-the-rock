@@ -7,7 +7,7 @@ import React, {
 } from 'react';
 import { classNames } from 'shared/lib/helpers/classNames/classNames';
 import { usePlayer } from 'shared/Player/hooks/usePlayer';
-import './SongList.scss';
+import styles from './SongList.module.scss';
 
 interface SongsListProps {
     classNameValue?: string;
@@ -39,7 +39,7 @@ export const SongsList: FC<SongsListProps> = (props) => {
   }, []);
 
   return (
-    <div className={classNames('', {}, [classNameValue])}>
+    <div className={classNames(styles.flex, {}, [classNameValue])}>
       {error ? (
         <p>
           {' '}
@@ -47,7 +47,7 @@ export const SongsList: FC<SongsListProps> = (props) => {
           {' '}
         </p>
       ) : (
-        <ul className="songs">
+        <ul className={styles.songs}>
           {songs?.map((oneSong : DataValue, index) => (
             <li
               key={index}
@@ -55,7 +55,7 @@ export const SongsList: FC<SongsListProps> = (props) => {
                 changeTrack(oneSong);
               }}
               className={
-                classNames('one-song', { chosen: oneSong.title === currentSong.title }, [])
+                classNames(styles['one-song'], { [styles.chosen]: oneSong.title === currentSong.title }, [])
               }
             >
               {oneSong.title}

@@ -1,7 +1,7 @@
 import React from 'react';
 import { classNames } from 'shared/lib/helpers/classNames/classNames';
 import { useTheme } from 'shared/Theme/hooks/useTheme';
-import './ThemeSwitcher.scss';
+import styles from './ThemeSwitcher.module.scss';
 
 export const ThemeSwitcher = () => {
   const { toggleTheme } = useTheme();
@@ -11,6 +11,6 @@ export const ThemeSwitcher = () => {
   };
 
   return (
-    <button className={classNames('themeSwitcher', {}, [])} onClick={changeTheme} type="button">change theme</button>
+    <button className={classNames(styles.themeSwitcher, {}, [])} onClick={changeTheme} type="button">change theme</button>
   );
 };

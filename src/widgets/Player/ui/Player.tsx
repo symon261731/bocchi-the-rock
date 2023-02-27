@@ -8,7 +8,7 @@ import Next from 'shared/assets/svg/next.svg';
 import Previous from 'shared/assets/svg/back.svg';
 import { classNames } from 'shared/lib/helpers/classNames/classNames';
 import { usePlayer } from 'shared/Player/hooks/usePlayer';
-import './Player.scss';
+import styles from './Player.module.scss';
 
 interface PlayerProps {
     classnameValues?: string,
@@ -58,19 +58,19 @@ export const Player: FC<PlayerProps> = (props) => {
   }, [currentSong]);
 
   return (
-    <div className={classNames('player', {}, [classnameValues])}>
+    <div className={classNames(styles.player, {}, [classnameValues])}>
       <audio ref={audioPlayer} src={currentSong.preview} />
-      <button type="button" className="clear" onClick={playPreviousTrack}>
+      <button type="button" className={styles.clear} onClick={playPreviousTrack}>
         <Previous />
       </button>
       <button
         onClick={togglePlayPause}
-        className="clear"
+        className={styles.clear}
         type="button"
       >
         {isPlaying ? <Pause /> : <Play /> }
       </button>
-      <button onClick={playNextTrack} className="clear" type="button">
+      <button onClick={playNextTrack} className={styles.clear} type="button">
         <Next />
       </button>
     </div>
