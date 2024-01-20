@@ -1,6 +1,6 @@
 # bocchi-the-rock
 
-Приложение mp3 плеера.
+Приложение MP3 плеера.
 
 <h2>Стек:</h2>
 <p>Typescript, React, webpack, deezerAPI, SCSS, ReactContext</p>
