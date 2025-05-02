@@ -7,7 +7,9 @@ import React, {
 } from 'react';
 import { classNames } from 'shared/lib/helpers/classNames/classNames';
 import { usePlayer } from 'shared/Player/hooks/usePlayer';
+import { Loader } from 'shared/ui/Loader/Loader';
 import styles from './SongList.module.scss';
+import { useGetSongsList } from '../hooks/useGetSongsList';
 
 interface SongsListProps {
     classNameValue?: string;
@@ -25,21 +27,20 @@ export interface DataValue {
 export const SongsList: FC<SongsListProps> = (props) => {
   const { classNameValue, setSongs, songs } = props;
 
-  const [error, setError] = useState('');
+  const { isLoading, error } = useGetSongsList({ setSongs });
+
   const { currentSong, changeTrack } = usePlayer();
 
-  useEffect(() => {
-    deezerApi.getAlbum().then((songsList) => {
-      if (songsList.error) {
-        setError(songsList.error.message);
-      } else {
-        setSongs(songsList.tracks.data);
-      }
-    });
-  }, []);
+  if (isLoading) {
+    return (
+      <div className={styles.centerLoader}>
+        <Loader />
+      </div>
+    );
+  }
 
   return (
-    <div className={classNames(styles.flex, {}, [classNameValue])}>
+    <div className={classNames('', {}, [classNameValue])}>
       {error ? (
         <p>
           {' '}

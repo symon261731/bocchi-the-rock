@@ -10,7 +10,9 @@ export const MainPage = () => {
   return (
     <div className={classNames(styles.mainPage, {}, [])}>
       <Card songs={songs} />
-      <SongsList songs={songs} setSongs={setSongs} classNameValue="flex" />
+      <div className={styles.songList}>
+        <SongsList songs={songs} setSongs={setSongs} classNameValue="flex" />
+      </div>
     </div>
   );
 };
